@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Production & Build outputs
+dist/
+build/
+out/
+coverage/
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+*.pem
+*.key
+*.json.key
+*firebase-adminsdk*.json
+*service-account*.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+firebase-debug.log*
+firestore-debug.log*
+kaamfix-server*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+
+# Local databases & Checkpoints
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+data/agent-checkpoints.sqlite*
+
+# User uploaded data & payment proofs
+data/payment-proofs/*
+!data/payment-proofs/.gitkeep
+data/chat-images/*
+!data/chat-images/.gitkeep
+data/uploads/*
+!data/uploads/.gitkeep
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

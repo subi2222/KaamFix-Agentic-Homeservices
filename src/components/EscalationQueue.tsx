@@ -1,0 +1,12 @@
+import React, { useEffect, useState } from "react";
+import { ShieldAlert } from "lucide-react";
+import { auth } from "../lib/firebase";
+
+export default function EscalationQueue() {
+  const [items, setItems] = useState<any[]>([]); const [error, setError] = useState("");
+  const load = async () => { try { const token=await auth.currentUser?.getIdToken(); const response=await fetch("/api/admin/escalations",{headers:{Authorization:`Bearer ${token}`}}); const body=await response.json(); if(!response.ok)throw new Error(body.detail||"Could not load escalations"); setItems(body); } catch(e:any){setError(e.message);} };
+  useEffect(()=>{load();},[]);
+  const decide = async (id:string, action:string) => { const reason=window.prompt("Record the reason for this decision"); if(!reason)return; const token=await auth.currentUser?.getIdToken(); const response=await fetch(`/api/admin/escalations/${id}/decision`,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},body:JSON.stringify({action,reason})}); if(response.ok)load(); else setError((await response.json()).detail||"Decision failed"); };
+  const open=items.filter(x=>x.status==="open");
+  return <section className="bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-3xl p-6 space-y-4"><div><h2 className="font-black flex gap-2"><ShieldAlert className="text-rose-600"/> Agent escalation queue ({open.length})</h2><p className="text-xs text-gray-500">Human decisions resume the persisted workflow.</p></div>{error&&<p className="text-sm text-rose-700">{error}</p>}{open.length===0?<p className="text-sm text-gray-400">No open agent escalations.</p>:open.map(x=><div key={x.escalationId} className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/30 space-y-2"><p className="font-bold">{x.escalationReason} · {x.issueId}</p><p className="text-xs">Evidence: {x.supportingEvidence?.join(", ")}</p><div className="flex gap-2"><button onClick={()=>decide(x.escalationId,"approve")} className="px-3 py-2 bg-emerald-600 text-white rounded-lg text-xs font-bold">Approve continuation</button><button onClick={()=>decide(x.escalationId,"require_specialist")} className="px-3 py-2 bg-amber-600 text-white rounded-lg text-xs font-bold">Require specialist</button><button onClick={()=>decide(x.escalationId,"reject")} className="px-3 py-2 bg-rose-600 text-white rounded-lg text-xs font-bold">Reject</button></div></div>)}</section>;
+}

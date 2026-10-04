@@ -1,0 +1,167 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isApprovedWorker() {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/workers/$(request.auth.uid)) && 
+             get(/databases/$(database)/documents/workers/$(request.auth.uid)).data.status == 'approved';
+    }
+
+    // --- Entity Validation Blueprints ---
+
+    function isValidUser(data) {
+      return data.uid is string && data.uid.size() <= 128 &&
+             data.name is string && data.name.size() <= 128 &&
+             data.email is string && data.email.size() <= 128 &&
+             data.role in ['customer', 'worker', 'admin'] &&
+             (!('category' in data) || data.category is string);
+    }
+
+    function isValidWorker(data) {
+      return data.uid is string && data.uid.size() <= 128 &&
+             data.name is string && data.name.size() <= 128 &&
+             data.category is string && data.category.size() <= 128 &&
+             data.city is string && data.city.size() <= 128 &&
+             data.experience is number && data.experience >= 0 && data.experience <= 50 &&
+             data.pricing is number && data.pricing >= 0 &&
+             (!('rating' in data) || data.rating is number) &&
+             (!('reviewCount' in data) || data.reviewCount is number) &&
+             data.status in ['pending', 'approved', 'rejected', 'suspended'] &&
+             data.availability in ['available', 'busy', 'offline'];
+    }
+
+    function isValidRequest(data) {
+      return data.requestId is string && data.requestId.size() <= 128 &&
+             data.customerId is string && data.customerId.size() <= 128 &&
+             data.customerName is string && data.customerName.size() <= 128 &&
+             data.title is string && data.title.size() <= 200 &&
+             data.description is string && data.description.size() <= 1000 &&
+             data.status in ['pending', 'accepted', 'in_progress', 'completed', 'rejected', 'cancelled', 'disputed'] &&
+             data.budget is number && data.budget >= 0 &&
+             data.location is string && data.location.size() <= 500 &&
+             data.date is string && data.date.size() <= 128;
+    }
+
+    // Allow flexible review creation
+    function isValidReview(data) {
+      return data.reviewId is string && data.reviewId.size() <= 128 &&
+             data.workerId is string && data.workerId.size() <= 128 &&
+             data.customerId is string && data.customerId.size() <= 128 &&
+             data.customerName is string && data.customerName.size() <= 128 &&
+             data.rating is number && data.rating >= 1 && data.rating <= 5 &&
+             data.review is string && data.review.size() <= 2000;
+    }
+
+    function isValidNotification(data) {
+      return data.notificationId is string && data.notificationId.size() <= 128 &&
+             data.userId is string && data.userId.size() <= 128 &&
+             data.message is string && data.message.size() <= 1000 &&
+             data.read is bool;
+    }
+
+    // --- Collection Routes ---
+
+    // Users Collection rules
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+      allow create: if (isAuthenticated() && request.auth.uid == userId && isValidUser(request.resource.data) && request.resource.data.role != 'admin') || isAdmin();
+      allow update: if (isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.role == resource.data.role) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Workers Collection rules
+    match /workers/{workerId} {
+      allow get, list: if true;
+      allow create: if (isAuthenticated() && (request.auth.uid == workerId || isAdmin()) && isValidWorker(request.resource.data)) || isAdmin();
+      allow update: if (isAuthenticated() && (
+        isAdmin() ||
+        (request.auth.uid == workerId && isValidWorker(request.resource.data) && request.resource.data.status == resource.data.status) ||
+        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['rating', 'reviewCount']))
+      )) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Requests Collection rules
+    match /requests/{requestId} {
+      allow get: if isAuthenticated() && (
+        resource.data.customerId == request.auth.uid || 
+        resource.data.workerId == request.auth.uid || 
+        (
+          resource.data.status == 'pending' && 
+          isApprovedWorker() && 
+          resource.data.serviceCategory == get(/databases/$(database)/documents/workers/$(request.auth.uid)).data.category
+        ) ||
+        isAdmin()
+      );
+      allow list: if isAuthenticated() && (
+        resource.data.customerId == request.auth.uid || 
+        resource.data.workerId == request.auth.uid || 
+        (
+          resource.data.status == 'pending' &&
+          isApprovedWorker() &&
+          resource.data.serviceCategory == get(/databases/$(database)/documents/workers/$(request.auth.uid)).data.category
+        ) ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && 
+                     request.resource.data.customerId == request.auth.uid && 
+                     isValidRequest(request.resource.data);
+      allow update: if isAuthenticated() && 
+                     isValidRequest(request.resource.data) && (
+                       isAdmin() ||
+                       (resource.data.customerId == request.auth.uid && request.resource.data.customerId == request.auth.uid) || 
+                       (resource.data.workerId == request.auth.uid && request.resource.data.workerId == request.auth.uid) || 
+                       (resource.data.status == 'pending' && request.resource.data.workerId == request.auth.uid && isApprovedWorker())
+                     );
+      allow delete: if isAdmin();
+    }
+
+    // Reviews Collection rules
+    match /reviews/{reviewId} {
+      allow get, list: if true;
+      allow create: if isAuthenticated() && 
+                     request.resource.data.customerId == request.auth.uid && 
+                     isValidReview(request.resource.data);
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Notifications Collection rules
+    match /notifications/{notificationId} {
+      allow get, list, update, delete: if isAuthenticated() && 
+                                    resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && isValidNotification(request.resource.data) && (
+        request.resource.data.userId == request.auth.uid || 
+        isAdmin() || 
+        isApprovedWorker() || 
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'customer')
+      );
+    }
+  }
+}

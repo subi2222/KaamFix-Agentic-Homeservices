@@ -1,0 +1,6 @@
+{
+  "name": "KaamFix",
+  "description": "Pakistan's smartest local services marketplace connecting skilled workers with customers, powered by AI Service Advisor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

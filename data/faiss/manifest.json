@@ -1,0 +1,25 @@
+{
+  "embedding_model": "models/gemini-embedding-001",
+  "documents": {
+    "f358cf102c708d35": {
+      "source": "kaamfix-general-safety.md",
+      "title": "KaamFix General Service Safety Reference",
+      "source_id": "f358cf102c708d35",
+      "equipment": "General home-service equipment",
+      "model": null,
+      "version": "1.0",
+      "section": "Safety and stop conditions",
+      "sha256": "f358cf102c708d354e050b873fb7503b1e9be5147811dad59efa2bd37667d341"
+    },
+    "27ed9c6ae92cf527": {
+      "source": "README.md",
+      "title": "README",
+      "source_id": "27ed9c6ae92cf527",
+      "equipment": null,
+      "model": null,
+      "version": null,
+      "section": null,
+      "sha256": "27ed9c6ae92cf5271eecd76986a529f450ae1ef2ccbfb9fd28ec0532c6e27e30"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "users": {
+      "uid": "string",
+      "name": "string",
+      "email": "string",
+      "role": "string",
+      "createdAt": "timestamp"
+    },
+    "workers": {
+      "uid": "string",
+      "name": "string",
+      "category": "string",
+      "city": "string",
+      "experience": "number",
+      "pricing": "number",
+      "rating": "number",
+      "reviewCount": "number",
+      "verified": "boolean",
+      "status": "string",
+      "availability": "string",
+      "about": "string",
+      "createdAt": "timestamp"
+    },
+    "requests": {
+      "requestId": "string",
+      "customerId": "string",
+      "customerName": "string",
+      "workerId": "string",
+      "workerName": "string",
+      "serviceCategory": "string",
+      "title": "string",
+      "description": "string",
+      "status": "string",
+      "budget": "number",
+      "location": "string",
+      "date": "string",
+      "createdAt": "timestamp"
+    },
+    "reviews": {
+      "reviewId": "string",
+      "workerId": "string",
+      "customerId": "string",
+      "customerName": "string",
+      "rating": "number",
+      "review": "string",
+      "createdAt": "timestamp"
+    },
+    "notifications": {
+      "notificationId": "string",
+      "userId": "string",
+      "message": "string",
+      "read": "boolean",
+      "createdAt": "timestamp"
+    }
+  },
+  "firestore": {
+    "rules_file": "firestore.rules"
+  }
+}

@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+!.env.example
+backend/.env
+node_modules
+dist
+__pycache__
+*.py[cod]
+*.log
+*service-account*.json
+*firebase-adminsdk*.json
+data/payment-proofs
+data/chat-images
+data/agent-checkpoints.sqlite*
+screenshots

@@ -1,0 +1,248 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --bg-app: #f7f6f3;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #efede9;
+  --text-primary: #171714;
+  --text-secondary: #62615d;
+  --text-muted: #8b8983;
+  --border-subtle: #e9e6e1;
+  --border-strong: #ddd9d2;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(226, 232, 240, 0.8);
+}
+
+.dark {
+  color-scheme: dark;
+  --bg-app: #171714;
+  --bg-card: #211f1c;
+  --bg-card-subtle: #292621;
+  --text-primary: #faf8f5;
+  --text-secondary: #cec9c1;
+  --text-muted: #918b82;
+  --border-subtle: #302d28;
+  --border-strong: #413c35;
+  --nav-bg: rgba(33, 31, 28, 0.9);
+  --glass-bg: rgba(33, 31, 28, 0.8);
+  --glass-border: rgba(65, 60, 53, 0.7);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    @apply font-sans antialiased transition-colors duration-200 selection:bg-orange-500/20 selection:text-orange-700;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  button, a, input, textarea, select { @apply outline-none; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+}
+
+/* Shared SaaS surface language */
+.app-shell {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(239, 91, 67, .07), transparent 30rem),
+    var(--bg-app);
+}
+
+.dashboard-page {
+  --dashboard-radius: 1.25rem;
+  color: var(--text-primary);
+}
+
+.dashboard-page > section,
+.dashboard-page > div {
+  scroll-margin-top: 6rem;
+}
+
+.dashboard-page .bg-white {
+  border-color: rgba(221, 217, 210, .9);
+  box-shadow: 0 1px 2px rgba(23, 23, 20, .03), 0 12px 34px rgba(23, 23, 20, .04);
+}
+
+.dashboard-page > section {
+  border-radius: 1.5rem;
+}
+
+.dashboard-page table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.dashboard-page thead {
+  background: #f3f1ed;
+}
+
+.dashboard-page tbody tr {
+  transition: background-color .18s ease;
+}
+
+.dashboard-page tbody tr:hover {
+  background: rgba(239, 91, 67, .035);
+}
+
+.dashboard-page button {
+  transition: transform .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+
+.dashboard-page button:active {
+  transform: translateY(1px);
+}
+
+.dashboard-page button:focus-visible,
+.dashboard-page [role="button"]:focus-visible {
+  box-shadow: 0 0 0 3px rgba(239, 91, 67, .2);
+}
+
+.dark .dashboard-page .bg-white {
+  border-color: var(--border-subtle);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2), 0 12px 32px rgba(0, 0, 0, .12);
+}
+
+button { cursor: pointer; }
+
+input, textarea, select {
+  border-radius: 0.875rem !important;
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #ef5b43 !important;
+  box-shadow: 0 0 0 3px rgba(239, 91, 67, .12) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-orange-500 to-rose-500 dark:from-orange-400 dark:via-orange-300 dark:to-rose-400;
+}
+
+.gradient-text-purple {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 dark:from-purple-400 dark:via-indigo-300 dark:to-blue-400;
+}
+
+/* Comprehensive Dark Mode Fallback Rules for High Contrast Comfort */
+.dark .bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.dark .bg-gray-50,
+.dark .bg-slate-50,
+.dark .bg-gray-50\/50,
+.dark .bg-slate-50\/50 {
+  background-color: var(--bg-card-subtle) !important;
+}
+
+.dark .text-gray-800,
+.dark .text-gray-900,
+.dark .text-slate-800,
+.dark .text-slate-900 {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-600,
+.dark .text-slate-700,
+.dark .text-slate-600 {
+  color: var(--text-secondary) !important;
+}
+
+.dark .text-gray-500,
+.dark .text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-100\/50 {
+  border-color: var(--border-subtle) !important;
+}
+
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: var(--border-strong) !important;
+}
+
+.dark .bg-white\/90 {
+  background-color: var(--nav-bg) !important;
+}
+
+/* Form inputs dark theme */
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="number"],
+.dark input[type="date"],
+.dark input[type="datetime-local"],
+.dark textarea,
+.dark select {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Emerald badge & highlights in dark mode */
+.dark .bg-emerald-50 {
+  background-color: rgba(239, 91, 67, 0.12) !important;
+}
+.dark .text-emerald-700,
+.dark .text-emerald-800,
+.dark .text-emerald-600 {
+  color: #34d399 !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
