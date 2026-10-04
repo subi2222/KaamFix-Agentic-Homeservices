@@ -27,6 +27,12 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         output: {
+          // Vercel may invoke the frontend build more than once while it also
+          // packages the Python function. Stable names prevent its output
+          // manifest from referring to hashes replaced by a later Vite run.
+          entryFileNames: 'assets/[name].js',
+          chunkFileNames: 'assets/[name].js',
+          assetFileNames: 'assets/[name][extname]',
           manualChunks(id) {
             if (id.includes('node_modules/firebase')) {
               return 'vendor-firebase';
