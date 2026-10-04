@@ -12,8 +12,6 @@ from google import genai
 from .auth import current_user, require_roles
 from .config import get_settings
 from .firebase import get_db
-from .nexa_rag import grounded_guidance
-from .agent_service import diagnostic_brief, resume_workflow, start_triage
 from .models import AdvisorRequest, BidCreate, BookingTransition, ClarificationRequest, DiagnosticRequest, DispatchRequest, EscalationDecision, LocationUpdate, MessageCreate, PaymentCreate, RequestCreate, RequestStatusUpdate, ReviewCreate, TriageRequest, UserUpdate, WorkerModeration, WorkerUpdate, now_utc
 
 settings = get_settings()
@@ -101,6 +99,8 @@ def worker_radar(category: str, latitude: float, longitude: float, radiusKm: flo
 
 @app.post("/api/agent/dispatch", tags=["agent"])
 def agent_dispatch(payload: DispatchRequest, user: dict = Depends(require_roles("customer"))):
+    from .nexa_rag import grounded_guidance
+
     matches = nearby_workers(payload.category, payload.latitude, payload.longitude, payload.radiusKm)[:10]
     rag = grounded_guidance(f"{payload.category} {payload.problem} pricing safety payment")
     return {"agent": "KaamFix NEXA", "strategy": "category + live availability + distance + rating", "matches": matches, "summary": f"NEXA found {len(matches)} online {payload.category} professional(s) within {payload.radiusKm:g} km.", "ragGuidance": rag["answer"], "ragSources": rag["sources"]}
@@ -289,6 +289,8 @@ def create_request(payload: RequestCreate, user: dict = Depends(require_roles("c
 
 @app.post("/api/agents/triage", tags=["agents"])
 def triage_issue(payload: TriageRequest, user: dict = Depends(require_roles("customer"))):
+    from .agent_service import start_triage
+
     try:
         result = start_triage(user["uid"], payload.description, payload.selected_category, payload.images)
         return {key: value for key, value in result.items() if not key.startswith("__")}
@@ -318,6 +320,8 @@ def agent_status(user: dict = Depends(current_user)):
 
 @app.post("/api/agents/workflows/{workflow_id}/confirm", tags=["agents"])
 def confirm_issue(workflow_id: str, user: dict = Depends(require_roles("customer"))):
+    from .agent_service import resume_workflow
+
     workflow = get_db().collection("agent_workflows").document(workflow_id).get().to_dict() or {}
     if workflow.get("customer_id") != user["uid"]:
         raise HTTPException(status_code=404, detail="Workflow not found")
@@ -329,6 +333,8 @@ def confirm_issue(workflow_id: str, user: dict = Depends(require_roles("customer
 
 @app.post("/api/agents/workflows/{workflow_id}/clarify", tags=["agents"])
 def clarify_issue(workflow_id: str, payload: ClarificationRequest, user: dict = Depends(require_roles("customer"))):
+    from .agent_service import resume_workflow
+
     workflow = get_db().collection("agent_workflows").document(workflow_id).get().to_dict() or {}
     if workflow.get("customer_id") != user["uid"]:
         raise HTTPException(status_code=404, detail="Workflow not found")
@@ -349,6 +355,8 @@ def workflow_status(workflow_id: str, user: dict = Depends(current_user)):
 
 @app.post("/api/requests/{request_id}/technical-assistant", tags=["agents"])
 def technical_assistant(request_id: str, payload: DiagnosticRequest, user: dict = Depends(require_roles("worker", "admin"))):
+    from .agent_service import diagnostic_brief
+
     db = get_db()
     booking = db.collection("requests").document(request_id).get().to_dict() or {}
     if not booking:
@@ -400,6 +408,8 @@ def list_escalations(user: dict = Depends(require_roles("admin"))):
 
 @app.post("/api/admin/escalations/{escalation_id}/decision", tags=["agents"])
 def decide_escalation(escalation_id: str, payload: EscalationDecision, user: dict = Depends(require_roles("admin"))):
+    from .agent_service import resume_workflow
+
     ref = get_db().collection("agent_escalations").document(escalation_id)
     escalation = ref.get().to_dict() or {}
     if not escalation or escalation.get("status") != "open":
