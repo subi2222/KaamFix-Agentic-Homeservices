@@ -1,76 +1,80 @@
 <div align="center">
 
-# 🛠️ KaamFix NEXA
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F172A,50:1D4ED8,100:F97316&height=190&section=header&text=KaamFix%20NEXA&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=Agentic%20AI%20Home%20Services%2C%20Dispatch%20%26%20Trust%20Platform%20for%20Pakistan&descSize=17&descAlignY=60" alt="KaamFix NEXA" width="100%"/>
 
-### Agentic AI-Powered Home Services, Dispatch & Trust Platform for Pakistan
+### 🛠️ *From “my water motor isn't working” to the right professional at your door.*
 
-**From “my water motor isn’t working” to the right professional at your doorstep.**
+Describe the problem · get AI-assisted triage · compare live bids from nearby workers · track the job to completion.<br/>
+**Hazardous requests are always routed to a human before anyone is dispatched.**
 
-Describe your problem, receive AI-assisted triage, compare bids from nearby workers, and manage the job from booking to completion. Hazardous requests are routed for human review.
+<br/>
 
-**Developed by Abdul Subhan**
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20Site-16A34A?style=for-the-badge)](https://kaamfix.vercel.app/)
+[![Developer](https://img.shields.io/badge/👨‍💻%20Developer-Abdul%20Subhan-2563EB?style=for-the-badge)](#-developer)
+[![Status](https://img.shields.io/badge/Status-MVP-F97316?style=for-the-badge)](#-known-limitations--roadmap)
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-brightgreen?style=for-the-badge)](https://kaamfix.vercel.app/)
-[![Developer](https://img.shields.io/badge/Developer-Abdul%20Subhan-2563EB?style=for-the-badge)](#developer)
+![React](https://img.shields.io/badge/React_19-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript_5.8-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI_0.115-009688?style=flat-square&logo=fastapi&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)
-![LangGraph](https://img.shields.io/badge/LangGraph-agents-1C3C3C)
-![Firebase](https://img.shields.io/badge/Firebase-Auth%20%2B%20Firestore-FFCA28?logo=firebase&logoColor=black)
-![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)
+<br/>
+
+**[Overview](#-overview) · [How It Works](#-how-it-works) · [Features](#-key-features) · [Agents](#-the-nexa-agent-layer) · [Architecture](#-architecture) · [Screenshots](#-screenshots) · [Get Started](#-getting-started) · [Deploy](#-deployment) · [Roadmap](#-known-limitations--roadmap)**
 
 </div>
 
 ---
 
-## Table of Contents
-
-- [Overview](#overview)
-- [How It Works](#how-it-works)
-- [Key Features](#key-features)
-- [The NEXA Agent Layer](#the-nexa-agent-layer)
-- [Architecture](#architecture)
-- [Booking Lifecycle](#booking-lifecycle)
-- [Tech Stack](#tech-stack)
-- [Screenshots](#screenshots)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
-- [Approved Documents (RAG)](#approved-documents-rag)
-- [API Overview](#api-overview)
-- [Security & Human Oversight](#security--human-oversight)
-- [Deployment](#deployment)
-- [Known Limitations & Roadmap](#known-limitations--roadmap)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [Developer](#developer)
-- [License](#license)
-
----
-
-## Overview
+## 📖 Overview
 
 **KaamFix** connects households and small businesses across Pakistan with skilled tradespeople — electricians, plumbers, AC technicians, carpenters, painters, masons, appliance-repair experts and more.
 
-Finding reliable help can mean calling multiple workers, comparing unclear prices, and explaining a technical fault without knowing its cause. Workers also need relevant information before accepting a job and practical support while completing it.
+Finding reliable help usually means calling several workers, comparing unclear prices, and explaining a technical fault without knowing its cause. Workers, in turn, need useful information before accepting a job and practical support while doing it.
 
-KaamFix NEXA brings these steps into one workflow: understand the issue, check for risk, find suitable workers, agree on a price, and track the service through completion.
+**KaamFix NEXA** brings all of this into one workflow: *understand the issue → check for risk → find suitable workers → agree on a price → track the service to completion.*
 
-The marketplace combines customer, worker and admin portals with a coordinated AI workflow:
+<table>
+<tr>
+<td align="center" width="25%"><h3>3</h3><sub>role-based portals<br/>customer · worker · admin</sub></td>
+<td align="center" width="25%"><h3>4</h3><sub>cooperating agents<br/>triage · dispatch · knowledge · escalation</sub></td>
+<td align="center" width="25%"><h3>3</h3><sub>human-in-the-loop<br/>interrupt gates</sub></td>
+<td align="center" width="25%"><h3>PKR</h3><sub>local pricing &amp; payments<br/>Easypaisa · JazzCash · bank · cash</sub></td>
+</tr>
+</table>
+
+### 🎯 The problem → our answer
 
 | Problem | How KaamFix handles it |
 |---|---|
-| Customer doesn't know what's wrong or which trade to hire | **AI triage** turns text + photos into a structured, confirmed issue |
-| Dangerous jobs dispatched like ordinary calls | **Hazard gate** pauses the workflow until an **admin** reviews it |
-| Opaque pricing | **Live bidding** in PKR — workers submit price + ETA, customer chooses |
-| Unverified workers | Admin moderation, verified flag, ratings & reviews |
-| No technical support on site | **Technical Assistant**: RAG over *approved* manuals with page citations |
-| Payment disputes | Proof-based manual PKR payments, receipt confirmation, dual completion |
+| Customer doesn't know what's wrong or which trade to hire | 🤖 **AI triage** turns text + photos into a structured, confirmed issue |
+| Dangerous jobs dispatched like ordinary calls | 🛑 **Hazard gate** pauses the workflow until an **admin** reviews it |
+| Opaque pricing | 💬 **Live bidding** in PKR — workers submit price + ETA, the customer chooses |
+| Unverified workers | ✅ Admin moderation, verified flag, ratings & reviews |
+| No technical support on site | 📚 **Technical Assistant** — RAG over *approved* manuals with page citations |
+| Payment disputes | 🧾 Proof-based manual PKR payments, receipt confirmation, dual completion |
 
 ---
 
-## How It Works
+## 🧭 How It Works
+
+```mermaid
+flowchart LR
+    A["1️⃣ Describe<br/>text + photos"] --> B["2️⃣ Clarify<br/>AI triage + safety check"]
+    B --> C["3️⃣ Compare<br/>nearby workers &amp; live bids"]
+    C --> D["4️⃣ Book<br/>accept a bid, open Booking Room"]
+    D --> E["5️⃣ Complete<br/>pay, confirm, review"]
+    style A fill:#DBEAFE,stroke:#3B82F6,color:#111
+    style B fill:#FEE2E2,stroke:#EF4444,color:#111
+    style C fill:#DCFCE7,stroke:#22C55E,color:#111
+    style D fill:#FEF9C3,stroke:#EAB308,color:#111
+    style E fill:#EDE9FE,stroke:#8B5CF6,color:#111
+```
 
 1. **Describe the problem.** Choose a service or explain the issue in your own words; attach photos when helpful.
 2. **Clarify the request.** AI structures the issue, asks follow-up questions and flags potential hazards for review.
@@ -78,51 +82,68 @@ The marketplace combines customer, worker and admin portals with a coordinated A
 4. **Book and coordinate.** Accept a bid and use the Booking Room for messages, updates and job progress.
 5. **Confirm and review.** Record payment, confirm receipt and completion, and leave a rating.
 
-## Key Features
+---
+
+## ✨ Key Features
+
+<table>
+<tr>
+<td width="33%" valign="top">
 
 ### 👤 Customer
-- Email/password and Google sign-in (Firebase Auth)
-- **AI triage** — describe the problem and attach up to 3 photos
-- **AI Service Advisor** — quick one-shot cost / urgency / safety guidance
-- **NEXA Radar** — map-based booking: set destination, category, radius and budget
-- **Live bids** from nearby online workers, with auto-refresh
-- **Booking Room** — status timeline, text + image chat, payment checkout
-- Record **Easypaisa, JazzCash, bank transfer or cash** payments, with proof upload and manual receipt confirmation
-- Ratings and reviews, notifications, request history
+- Email/password & Google sign-in
+- **AI triage** with up to 3 photos
+- **AI Service Advisor** — quick cost / urgency / safety guidance
+- **NEXA Radar** — map booking with radius & budget
+- **Live bids** with auto-refresh
+- **Booking Room** — timeline, text + image chat, payment
+- Easypaisa · JazzCash · bank · cash, with proof upload
+- Ratings, reviews, notifications, history
+
+</td>
+<td width="33%" valign="top">
 
 ### 🧰 Worker
-- Onboarding with trade, city, experience, PKR rate and bio; profile photo upload
-- **Available / Busy / Offline** toggle and live location sharing
+- Onboarding: trade, city, experience, PKR rate, bio, photo
+- **Available / Busy / Offline** toggle + live location
 - Lead feed with one-tap bidding (price, ETA, message)
-- Job transitions: *start journey → arrived → start work → finish work*
-- **Technical Assistant** (verified workers only): cited, document-grounded diagnostic checks
-- Payment receipt confirmation and earnings view
+- Job steps: *journey → arrived → start → finish*
+- **Technical Assistant** *(verified workers)* — cited, document-grounded checks
+- Receipt confirmation & earnings view
+
+</td>
+<td width="33%" valign="top">
 
 ### 🛡️ Admin
 - Worker roster: approve / reject / suspend / verify
-- **Escalation Queue** — review hazardous jobs and decide: *approve · require specialist · request information · reject · resolve*
-- Global view of requests and payments, payment-proof access
-- Platform analytics (Recharts) and notifications
+- **Escalation Queue** — *approve · require specialist · request info · reject · resolve*
+- Global requests & payments, proof access
+- Analytics (Recharts) & notifications
+
+</td>
+</tr>
+</table>
 
 ---
 
-## The NEXA Agent Layer
+## 🤖 The NEXA Agent Layer
 
-| Agent | What it does | How it stays safe |
-|---|---|---|
-| **Triage & Vision Agent** | Converts text + photos into a validated `TriageOutput` (category, urgency, symptoms, visible observations, possible causes, ≤3 clarification questions, hazard flags) | Separates *customer-reported symptoms* from *strictly visible observations*; causes are hypotheses only; never claims a photo proves safety; never gives hazardous repair steps |
-| **NEXA Dispatch Agent** | Finds approved, online workers in the right category within a radius and ranks them | Deterministic and explainable: `matchScore = max(0, 100 − 3·km) + min(3·rating, 15)` using haversine distance |
-| **Technical Assistant** | Gives the assigned worker diagnostic checks, tools/parts, safety warnings and stop conditions | Uses **only approved documents**; every source carries file, page, section and score; escalates when the worker isn't verified or evidence is weak |
-| **Admin Escalation** | Holds hazardous workflows for human review and resumes them on decision | Records reason, reviewer and timestamp; critical hazards can never skip review |
+| | Agent | What it does | How it stays safe |
+|---|---|---|---|
+| 🔴 | **Triage & Vision** | Converts text + photos into a validated `TriageOutput` (category, urgency, symptoms, visible observations, possible causes, ≤3 questions, hazard flags) | Separates *reported symptoms* from *strictly visible observations*; causes are hypotheses only; never claims a photo proves safety; never gives hazardous repair steps |
+| 🟢 | **NEXA Dispatch** | Finds approved, online workers in the right category within a radius and ranks them | Deterministic & explainable: `matchScore = max(0, 100 − 3·km) + min(3·rating, 15)` using haversine distance |
+| 🟣 | **Technical Assistant** | Gives the assigned worker checks, tools/parts, safety warnings and stop conditions | Uses **only approved documents**; every source carries file, page, section & score; escalates when the worker isn't verified or evidence is weak |
+| 🟡 | **Admin Escalation** | Holds hazardous workflows for human review and resumes them on decision | Records reason, reviewer & timestamp; critical hazards can never skip review |
 
-**Orchestration:** the triage workflow is a [LangGraph](https://github.com/langchain-ai/langgraph) `StateGraph` with three `interrupt()` points (customer clarification, admin review, customer confirmation). State is checkpointed in SQLite, so workflows survive restarts, and retrying a confirmed workflow can't create a second booking. Firestore `requests` stays the single source of truth for bookings.
+**Orchestration.** The triage workflow is a [LangGraph](https://github.com/langchain-ai/langgraph) `StateGraph` with three `interrupt()` points (customer clarification, admin review, customer confirmation). State is checkpointed in SQLite, so workflows survive restarts, and retrying a confirmed workflow can't create a second booking. Firestore `requests` stays the single source of truth for bookings.
 
-**Fallback paths:** Groq → Gemini → rule-based triage; FAISS → built-in safety knowledge base. These paths reduce reliance on a single AI provider. The safety fallback does not replace equipment-specific documentation.
+**Fallback paths.** Groq → Gemini → rule-based triage; FAISS → built-in safety knowledge base. These reduce reliance on a single AI provider. The safety fallback does not replace equipment-specific documentation.
 
-**What makes the workflow agentic?** It maintains state across steps, pauses for customer or admin input, uses retrieval and dispatch logic, and resumes toward a confirmed booking. Worker ranking itself uses a deterministic scoring formula.
+> **What makes it agentic?** The workflow keeps state across steps, pauses for customer or admin input, uses retrieval and dispatch logic, and resumes toward a confirmed booking. Worker ranking itself is a deterministic scoring formula.
 
 ```mermaid
 stateDiagram-v2
+    direction LR
     [*] --> triage
     triage --> clarify_issue: questions pending
     clarify_issue --> triage: customer answers
@@ -139,11 +160,11 @@ stateDiagram-v2
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart TB
-    subgraph Client["React 19 + Vite + TypeScript"]
+    subgraph Client["🖥️ React 19 + Vite + TypeScript"]
         C1[Customer portal]
         C2[Worker portal]
         C3[Admin console]
@@ -151,72 +172,91 @@ flowchart TB
 
     Client -->|"HTTPS / REST + Firebase ID token"| API
 
-    subgraph Backend["FastAPI"]
-        API[Auth & RBAC · Pydantic validation · Booking state machine]
-        API --> A1[Triage & Vision Agent]
-        API --> A2[NEXA Dispatch Agent]
-        API --> A3[Technical Assistant]
-        API --> A4[Admin Escalation]
-        A1 & A4 --- LG[LangGraph + SQLite checkpoints]
+    subgraph Backend["⚙️ FastAPI"]
+        API["Auth & RBAC · Pydantic validation · Booking state machine"]
+        API --> A1["🔴 Triage & Vision Agent"]
+        API --> A2["🟢 NEXA Dispatch Agent"]
+        API --> A3["🟣 Technical Assistant"]
+        API --> A4["🟡 Admin Escalation"]
+        A1 & A4 --- LG[("LangGraph + SQLite checkpoints")]
     end
 
-    A1 --> LLM[(Groq / Gemini)]
-    A3 --> FAISS[(FAISS + approved docs)]
+    A1 --> LLM[("Groq / Gemini")]
+    A3 --> FAISS[("FAISS + approved docs")]
     A3 --> LLM
-    API --> FS[(Cloud Firestore)]
-    Client --> FA[Firebase Auth]
-    Client --> SB["Supabase Storage: profile photos"]
+    API --> FS[("Cloud Firestore")]
+    Client --> FA["Firebase Auth"]
+    Client --> SB["Supabase Storage<br/>profile photos"]
+
+    style A1 fill:#FEE2E2,stroke:#EF4444,color:#111
+    style A2 fill:#DCFCE7,stroke:#22C55E,color:#111
+    style A3 fill:#EDE9FE,stroke:#8B5CF6,color:#111
+    style A4 fill:#FEF9C3,stroke:#EAB308,color:#111
 ```
 
 The Docker deployment uses a single FastAPI service to serve both `/api/*` and the built React app from the same origin.
 
----
+### 🔄 Booking Lifecycle
 
-## Booking Lifecycle
+```mermaid
+flowchart LR
+    P["pending<br/>workers bid"] --> AC["accepted<br/>room opens"] --> ER[en_route] --> AR[arrived] --> IP[in_progress] --> WF["work_finished<br/>payment unlocks"] --> PC["payment +<br/>receipt confirmed"] --> CO["completed<br/>both confirm"] --> RV["review"]
+    style P fill:#FFEDD5,stroke:#F97316,color:#111
+    style WF fill:#FEF9C3,stroke:#EAB308,color:#111
+    style CO fill:#1E293B,stroke:#1E293B,color:#fff
+```
 
-| Stage | What happens |
-|---|---|
-| `pending` | Request is broadcast and eligible workers submit bids. |
-| `accepted` | Customer accepts a bid and the Booking Room opens. |
-| `en_route` | Worker starts the journey. |
-| `arrived` | Worker confirms arrival. |
-| `in_progress` | Work begins. |
-| `work_finished` | Worker marks the work finished; payment becomes available. |
-| Payment confirmation | Customer records payment and worker confirms receipt. |
-| `completed` | Both parties confirm completion; customer can leave a review. |
-
-Side states: `rejected`, `cancelled`, `disputed`. Illegal transitions return **HTTP 409**. Payment unlocks only at `work_finished`. Accepting a bid marks the worker busy and rejects competing bids.
+Side states: `rejected` · `cancelled` · `disputed`. Illegal transitions return **HTTP 409**. Payment unlocks only at `work_finished`. Accepting a bid marks the worker busy and rejects competing bids.
 
 ---
 
-## Tech Stack
+## 🧰 Tech Stack
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React 19, TypeScript, Vite 6, Tailwind CSS v4, Motion, react-router-dom 7, Recharts, Leaflet / react-leaflet |
-| **Backend** | FastAPI, Uvicorn, Pydantic v2, pydantic-settings, Firebase Admin |
-| **Agents** | LangGraph (StateGraph, `interrupt`, `Command`), SQLite checkpointer |
-| **LLMs** | Groq (structured reasoning), Google Gemini (vision, embeddings, fallback) |
-| **Retrieval** | LangChain, Gemini embeddings (`gemini-embedding-001`), FAISS, PyPDF |
-| **Data & Auth** | Cloud Firestore, Firebase Authentication, Supabase Storage |
-| **Deployment** | Docker (Node 22 build → Python 3.12 runtime), Render blueprint; Vercel config included |
+| 🎨 **Frontend** | React 19, TypeScript, Vite 6, Tailwind CSS v4, Motion, react-router-dom 7, Recharts, Leaflet / react-leaflet |
+| ⚙️ **Backend** | FastAPI, Uvicorn, Pydantic v2, pydantic-settings, Firebase Admin |
+| 🤖 **Agents** | LangGraph (`StateGraph`, `interrupt`, `Command`), SQLite checkpointer |
+| 🧠 **LLMs** | Groq (structured reasoning), Google Gemini (vision, embeddings, fallback) |
+| 📚 **Retrieval** | LangChain, Gemini embeddings (`gemini-embedding-001`), FAISS, PyPDF |
+| 🗄️ **Data & Auth** | Cloud Firestore, Firebase Authentication, Supabase Storage |
+| 🚢 **Deployment** | Docker (Node 22 build → Python 3.12 runtime), Render blueprint; Vercel config included |
 
 ---
 
-Screenshots
-🏠 Landing Page
-<img src="https://github.com/user-attachments/assets/732506fc-abdd-4c36-8031-c0e93fef5083" alt="Landing Page" width="100%">
-🔐 Signup Modal
-<img src="https://github.com/user-attachments/assets/2e3043ee-aac4-4970-aa0e-7c5a83a5301f" alt="Signup Modal" width="100%">
-👤 Customer Dashboard
-<img src="https://github.com/user-attachments/assets/9f1248fa-ff87-40d0-bc4f-6cc03d42bbe7" alt="Customer Dashboard" width="100%">
-🧰 Worker Dashboard
-<img src="https://github.com/user-attachments/assets/913689e6-ea10-45b6-9850-ce7dc5562856" alt="Worker Dashboard" width="100%"> <img src="https://github.com/user-attachments/assets/b1663822-9e5c-4648-b0b7-ae7c3d0e5a27" alt="Worker Dashboard Additional Screenshot" width="100%">
-🛡️ Admin Dashboard
-<img src="https://github.com/user-attachments/assets/189554c3-2bbf-471e-b232-341f6c563a2b" alt="Admin Dashboard" width="100%">
-🧠 AI Service Advisor
-<img src="https://github.com/user-attachments/assets/425aa25b-94a9-44a6-9bb6-9d1c2376b274" alt="AI Service Advisor" width="100%">
-## Project Structure
+## 📸 Screenshots
+
+<div align="center">
+
+**🏠 Landing Page**
+
+<img src="https://github.com/user-attachments/assets/732506fc-abdd-4c36-8031-c0e93fef5083" alt="Landing Page" width="92%"/>
+
+</div>
+
+<br/>
+
+<table>
+<tr>
+<td align="center" width="50%"><b>🔐 Sign-up Modal</b><br/><br/><img src="https://github.com/user-attachments/assets/2e3043ee-aac4-4970-aa0e-7c5a83a5301f" alt="Signup Modal" width="100%"/></td>
+<td align="center" width="50%"><b>👤 Customer Dashboard</b><br/><br/><img src="https://github.com/user-attachments/assets/9f1248fa-ff87-40d0-bc4f-6cc03d42bbe7" alt="Customer Dashboard" width="100%"/></td>
+</tr>
+<tr>
+<td align="center"><b>🧰 Worker Dashboard</b><br/><br/><img src="https://github.com/user-attachments/assets/913689e6-ea10-45b6-9850-ce7dc5562856" alt="Worker Dashboard" width="100%"/></td>
+<td align="center"><b>🧰 Worker Dashboard — Leads &amp; Bidding</b><br/><br/><img src="https://github.com/user-attachments/assets/b1663822-9e5c-4648-b0b7-ae7c3d0e5a27" alt="Worker Dashboard additional screenshot" width="100%"/></td>
+</tr>
+<tr>
+<td align="center"><b>🛡️ Admin Dashboard</b><br/><br/><img src="https://github.com/user-attachments/assets/189554c3-2bbf-471e-b232-341f6c563a2b" alt="Admin Dashboard" width="100%"/></td>
+<td align="center"><b>🧠 AI Service Advisor</b><br/><br/><img src="https://github.com/user-attachments/assets/425aa25b-94a9-44a6-9bb6-9d1c2376b274" alt="AI Service Advisor" width="100%"/></td>
+</tr>
+</table>
+
+---
+
+## 📁 Project Structure
+
+<details>
+<summary><b>Click to expand the repository layout</b></summary>
 
 ```text
 kaamfix/
@@ -252,44 +292,44 @@ kaamfix/
 └── DEPLOYMENT.md
 ```
 
+</details>
+
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- **Node.js 22+** and npm
-- **Python 3.12+**
-- A **Firebase** project (Authentication + Firestore) and a service-account JSON from *Project settings → Service accounts*
-- API keys for **Google Gemini** and, optionally, **Groq**
-- *(Optional)* A **Supabase** project for profile-photo storage
+| Requirement | Notes |
+|---|---|
+| **Node.js 22+** & npm | Frontend build |
+| **Python 3.12+** | Backend & agents |
+| **Firebase project** | Authentication + Firestore, plus a service-account JSON (*Project settings → Service accounts*) |
+| **Gemini API key** | Vision, embeddings, fallback text |
+| **Groq API key** *(optional)* | Preferred structured reasoning |
+| **Supabase project** *(optional)* | Profile-photo storage |
 
-### 1. Clone
+### Quick start
 
 ```bash
+# 1 · Clone
 git clone https://github.com/AhmadIshaq-code/kaamfix.git
 cd kaamfix
-```
 
-### 2. Configure environment
-
-```bash
+# 2 · Configure (fill in the values — see Environment Variables)
 cp .env.example .env
-cp backend/.env.example backend/.env  # if supplied in your checkout
-```
+cp backend/.env.example backend/.env   # if supplied in your checkout
 
-Fill in the values — see [Environment Variables](#environment-variables). **Never commit these files or your Firebase service-account JSON.**
-
-### 3. Install dependencies
-
-```bash
+# 3 · Install
 npm install
 python -m venv .venv
-source .venv/bin/activate          # Windows PowerShell: .venv\Scripts\Activate.ps1
+source .venv/bin/activate              # Windows PowerShell: .venv\Scripts\Activate.ps1
 pip install -r backend/requirements.txt
 ```
 
-### 4. Run in development
+> 🔒 **Never commit** `.env`, `backend/.env` or your Firebase service-account JSON.
+
+### Run in development
 
 Two terminals — Vite proxies `/api` to the backend on port 8000:
 
@@ -303,7 +343,7 @@ npm run dev
 
 Open the URL Vite prints (usually `http://localhost:5173`). Interactive API docs: `http://127.0.0.1:8000/docs`.
 
-### 5. Run the production build locally
+### Run the production build locally
 
 ```bash
 npm run lint
@@ -311,15 +351,18 @@ npm run build
 python app.py        # serves API + built SPA at http://localhost:8000
 ```
 
-### 6. Create an admin
+### Create an admin
 
 Sign up normally, then set that user's `role` field to `admin` in the Firestore `users` collection. Workers appear in matches and can bid only after an admin sets their status to `approved`.
 
 ---
 
-## Environment Variables
+## 🔐 Environment Variables
 
-**Backend — secrets, server-side only (never use a `VITE_` prefix):**
+<details>
+<summary><b>Backend — secrets, server-side only (never use a <code>VITE_</code> prefix)</b></summary>
+
+<br/>
 
 | Variable | Description |
 |---|---|
@@ -335,7 +378,12 @@ Sign up normally, then set that user's `role` field to `admin` in the Firestore 
 | `KAAMFIX_DATA_DIR` | Persistent data directory (e.g. `/app/data`) |
 | `ENVIRONMENT` | `development` or `production` |
 
-**Frontend — public build configuration:**
+</details>
+
+<details>
+<summary><b>Frontend — public build configuration</b></summary>
+
+<br/>
 
 ```env
 VITE_FIREBASE_API_KEY=
@@ -351,40 +399,48 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 ```
 
-> Variables prefixed `VITE_` are embedded in the browser bundle. Firebase web configuration and the Supabase anon key are public client configuration; access must be controlled through authentication and database/storage rules. Keep Gemini/Groq keys, Supabase service-role keys and Firebase Admin credentials server-side only.
+</details>
+
+> **Note:** Variables prefixed `VITE_` are embedded in the browser bundle. Firebase web configuration and the Supabase anon key are public client configuration; access must be controlled through authentication and database/storage rules. Keep Gemini/Groq keys, Supabase service-role keys and Firebase Admin credentials server-side only.
 
 ---
 
-## Approved Documents (RAG)
+## 📚 Approved Documents (RAG)
 
-Equipment-specific guidance should be grounded in administrator-approved documents. No manuals are bundled — add your own. A built-in safety knowledge base provides fallback guidance when document retrieval is unavailable.
+Equipment-specific guidance should be grounded in administrator-approved documents. **No manuals are bundled — add your own.** A built-in safety knowledge base provides fallback guidance when document retrieval is unavailable.
 
-1. Put `.pdf`, `.txt` or `.md` files in `data/approved-docs/`.
-2. *(Optional)* Add a sidecar `<filename>.<ext>.json` for citation metadata:
+**1 · Add files** — put `.pdf`, `.txt` or `.md` files in `data/approved-docs/`.
 
-   ```json
-   {
-     "title": "Approved AC Service Manual",
-     "equipment": "Split air conditioner",
-     "model": "MODEL-123",
-     "version": "2026.1",
-     "section": "Electrical troubleshooting"
-   }
-   ```
+**2 · *(Optional)* Add citation metadata** — a sidecar `<filename>.<ext>.json`:
 
-3. Build the index:
+```json
+{
+  "title": "Approved AC Service Manual",
+  "equipment": "Split air conditioner",
+  "model": "MODEL-123",
+  "version": "2026.1",
+  "section": "Electrical troubleshooting"
+}
+```
 
-   ```bash
-   python -m backend.scripts.ingest_docs data/approved-docs
-   ```
+**3 · Build the index**
+
+```bash
+python -m backend.scripts.ingest_docs data/approved-docs
+```
 
 Chunks are 900 characters with 120 overlap; each source gets a SHA-256-derived id; rebuilding replaces the index so duplicates can't accumulate. Only add documents you have the right to use.
 
 ---
 
-## API Overview
+## 🔌 API Overview
 
 All protected routes expect `Authorization: Bearer <Firebase ID token>`. Full interactive docs at `/docs`.
+
+<details>
+<summary><b>Click to expand the endpoint list</b></summary>
+
+<br/>
 
 | Area | Endpoints |
 |---|---|
@@ -400,24 +456,28 @@ All protected routes expect `Authorization: Bearer <Firebase ID token>`. Full in
 | **Users & notifications** | `GET/PATCH /api/users/me` · `GET /api/users` · `GET /api/notifications` · `PATCH /api/notifications/{id}/read` |
 | **Legacy advisor** | `POST /api/advisor` |
 
+</details>
+
 ---
 
-## Security & Human Oversight
+## 🛡️ Security & Human Oversight
 
-- **Firebase ID-token verification** on every protected route; expired/revoked tokens → `401`; JWT-shaped strings are redacted from logs
-- **Role-based access control** (`customer` / `worker` / `admin`) enforced server-side; bookings visible only to their customer, assigned worker and admins
-- **Human oversight** — critical hazards pause workflows until an admin decides
-- **Strict validation** — Pydantic limits on every payload; image whitelist (JPEG/PNG/WebP) and 5 MB cap
-- **File safety** — server-generated filenames and path-traversal guards for payment proofs and chat images
-- **Secret isolation** — API keys and Firebase Admin credentials are server-side only
-- **Firestore rules** — default-deny with per-entity validation; alignment with extended booking states remains on the roadmap
-- **CORS** — exact origin allow-list; limited methods and headers; no wildcard with credentials
+| | |
+|---|---|
+| 🔑 **Authentication** | Firebase ID-token verification on every protected route; expired/revoked tokens → `401`; JWT-shaped strings are redacted from logs |
+| 👥 **Access control** | Role-based (`customer` / `worker` / `admin`) enforced server-side; bookings visible only to their customer, assigned worker and admins |
+| 🧑‍⚖️ **Human oversight** | Critical hazards pause workflows until an admin decides |
+| ✅ **Validation** | Pydantic limits on every payload; image whitelist (JPEG/PNG/WebP) and 5 MB cap |
+| 📂 **File safety** | Server-generated filenames and path-traversal guards for payment proofs and chat images |
+| 🗝️ **Secret isolation** | API keys and Firebase Admin credentials are server-side only |
+| 📜 **Firestore rules** | Default-deny with per-entity validation; alignment with extended booking states remains on the roadmap |
+| 🌐 **CORS** | Exact origin allow-list; limited methods and headers; no wildcard with credentials |
 
 > ⚠️ Never commit `.env`, `backend/.env`, a Firebase Admin JSON, logs, `data/agent-checkpoints.sqlite*` or private uploads. If a key has ever been committed or shared, rotate it.
 
 ---
 
-## Deployment
+## ☁️ Deployment
 
 KaamFix ships as **one Docker web service**: FastAPI serves `/api/*` and the built React app, with a persistent disk at `/app/data` for checkpoints, FAISS index and uploads.
 
@@ -429,54 +489,67 @@ KaamFix ships as **one Docker web service**: FastAPI serves `/api/*` and the bui
 4. Keep the persistent disk mounted at `/app/data`.
 5. Add the deployed domain to **Firebase Authentication → Settings → Authorized domains**.
 
-### Post-deployment checks
+### ✅ Post-deployment checks
 
-- `/api/health` returns `status: ok`
-- Customer login, text triage and photo triage work
-- A `401` triggers exactly one Firebase token refresh and retry
-- Technical Assistant is restricted to the assigned job
-- Admin decisions resume paused workflows
-- A restart preserves checkpoints and uploads
-- Logs contain no tokens, API keys or private keys
+- [ ] `/api/health` returns `status: ok`
+- [ ] Customer login, text triage and photo triage work
+- [ ] A `401` triggers exactly one Firebase token refresh and retry
+- [ ] Technical Assistant is restricted to the assigned job
+- [ ] Admin decisions resume paused workflows
+- [ ] A restart preserves checkpoints and uploads
+- [ ] Logs contain no tokens, API keys or private keys
 
 See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for the full guide. A `vercel.json` and `api/` entrypoints are included for alternative Vercel-based setups. Stateful checkpoints and local uploads require a persistence strategy when adapting this architecture to serverless hosting.
 
 ---
 
-## Known Limitations & Roadmap
+## 🧭 Known Limitations & Roadmap
 
-**Current MVP limitations**
+<table>
+<tr>
+<td valign="top" width="50%">
+
+**⚠️ Current MVP limitations**
 
 - No automated test suite yet
 - Payments are manual (proof screenshot + worker confirmation) — no gateway, escrow or refunds
 - Payment proofs and chat images are stored on local disk
 - SQLite checkpoints and local FAISS tie the service to a single instance
 - The legacy `/api/advisor` endpoint is unauthenticated
-- Firestore security rules predate the extended booking lifecycle (`en_route`, `arrived`, `work_finished`)
+- Firestore rules predate the extended booking lifecycle (`en_route`, `arrived`, `work_finished`)
 
-**Roadmap**
+</td>
+<td valign="top" width="50%">
 
-- [ ] pytest suite for hazard routing, dispatch maths, state machine and RAG grounding + CI
+**🗺️ Roadmap**
+
+- [ ] pytest suite for hazard routing, dispatch maths, state machine & RAG grounding + CI
 - [ ] Payment-gateway integration with escrow and refunds
-- [ ] Private object storage with signed URLs for proofs and chat images
-- [ ] Postgres checkpointer and managed vector store for horizontal scaling
-- [ ] Authentication and rate limiting for the advisor endpoint
-- [ ] Align Firestore rules with the full lifecycle and add rule tests
-- [ ] Worker KYC: document verification and trade certificates
+- [ ] Private object storage with signed URLs
+- [ ] Postgres checkpointer & managed vector store
+- [ ] Auth + rate limiting for the advisor endpoint
+- [ ] Align Firestore rules with the full lifecycle + rule tests
+- [ ] Worker KYC: documents & trade certificates
 - [ ] Urdu-language triage and UI
-- [ ] Agent evaluation harness and tool servers (MCP)
+- [ ] Agent evaluation harness & MCP tool servers
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Documentation
+## 📄 Documentation
 
-- **Product Requirements Document** — planned location: `docs/KaamFix_NEXA_PRD.pdf`; add the PDF before linking it.
-- 🚢 [`DEPLOYMENT.md`](./DEPLOYMENT.md) — deployment guide
-- ⚙️ [`backend/README.md`](./backend/README.md) — backend & agent setup
+| | |
+|---|---|
+| 📘 **Product Requirements Document** | Planned location: `docs/KaamFix_NEXA_PRD.pdf` — add the PDF before linking it |
+| 🚢 [`DEPLOYMENT.md`](./DEPLOYMENT.md) | Deployment guide |
+| ⚙️ [`backend/README.md`](./backend/README.md) | Backend & agent setup |
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome.
 
@@ -488,21 +561,30 @@ Please do not include secrets, service-account files or unlicensed documents in 
 
 ---
 
-## Developer
+## 👨‍💻 Developer
 
-**Abdul Subhan**  
-Developer of **KaamFix NEXA — Agentic AI-Powered Home Services, Dispatch & Trust Platform for Pakistan**.
+<table>
+<tr>
+<td>
 
-[LinkedIn](https://www.linkedin.com/in/abdul-subhan-developer)
+**Abdul Subhan**<br/>
+Developer of **KaamFix NEXA** — Agentic AI-Powered Home Services, Dispatch & Trust Platform for Pakistan.<br/><br/>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Abdul%20Subhan-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdul-subhan-developer)
+
+</td>
+</tr>
+</table>
 
 ---
 
-## License
+## 📜 License
 
 This draft proposes the **MIT License**. Add a corresponding `LICENSE` file to the repository before presenting the project as MIT-licensed. Any existing license and required third-party notices must be preserved.
 
 <div align="center">
 
-**Developed by Abdul Subhan · Built for Pakistan’s homes and skilled workforce.**
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:F97316,50:1D4ED8,100:0F172A&height=110&section=footer" alt="" width="100%"/>
+
+**Developed by Abdul Subhan · Built for Pakistan's homes and skilled workforce.**
 
 </div>
