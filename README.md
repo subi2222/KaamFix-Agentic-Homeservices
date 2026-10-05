@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="./assets/banner.svg" alt="KaamFix NEXA — Agentic AI Home Services, Dispatch &amp; Trust Platform for Pakistan" width="100%"/>
+# 🛠️ KaamFix NEXA
+
+## Agentic AI-Powered Home Services, Dispatch & Trust Platform for Pakistan
 
 ### 🛠️ *From “my water motor isn't working” to the right professional at your door.*
 
