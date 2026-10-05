@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F172A,50:1D4ED8,100:F97316&height=190&section=header&text=KaamFix%20NEXA&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=Agentic%20AI%20Home%20Services%2C%20Dispatch%20%26%20Trust%20Platform%20for%20Pakistan&descSize=17&descAlignY=60" alt="KaamFix NEXA" width="100%"/>
+<img src="./assets/banner.svg" alt="KaamFix NEXA — Agentic AI Home Services, Dispatch &amp; Trust Platform for Pakistan" width="100%"/>
 
 ### 🛠️ *From “my water motor isn't working” to the right professional at your door.*
 
@@ -9,7 +9,7 @@ Describe the problem · get AI-assisted triage · compare live bids from nearby 
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20Site-16A34A?style=for-the-badge)](https://kaamfix.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20Site-16A34A?style=for-the-badge)](https://kaam-fix-agentic-homeservices.vercel.app/)
 [![Developer](https://img.shields.io/badge/👨‍💻%20Developer-Abdul%20Subhan-2563EB?style=for-the-badge)](#-developer)
 [![Status](https://img.shields.io/badge/Status-MVP-F97316?style=for-the-badge)](#-known-limitations--roadmap)
 
@@ -255,11 +255,8 @@ Side states: `rejected` · `cancelled` · `disputed`. Illegal transitions return
 
 ## 📁 Project Structure
 
-<details>
-<summary><b>Click to expand the repository layout</b></summary>
-
 ```text
-kaamfix/
+KaamFix-Agentic-Homeservices/
 ├── app.py                      # Unified entrypoint: FastAPI API + built SPA
 ├── backend/
 │   ├── app/
@@ -292,7 +289,6 @@ kaamfix/
 └── DEPLOYMENT.md
 ```
 
-</details>
 
 ---
 
@@ -313,8 +309,8 @@ kaamfix/
 
 ```bash
 # 1 · Clone
-git clone https://github.com/AhmadIshaq-code/kaamfix.git
-cd kaamfix
+git clone https://github.com/subi2222/KaamFix-Agentic-Homeservices.git
+cd KaamFix-Agentic-Homeservices
 
 # 2 · Configure (fill in the values — see Environment Variables)
 cp .env.example .env
@@ -359,10 +355,7 @@ Sign up normally, then set that user's `role` field to `admin` in the Firestore 
 
 ## 🔐 Environment Variables
 
-<details>
-<summary><b>Backend — secrets, server-side only (never use a <code>VITE_</code> prefix)</b></summary>
-
-<br/>
+#### Backend — secrets, server-side only (never use a `VITE_` prefix)
 
 | Variable | Description |
 |---|---|
@@ -378,12 +371,8 @@ Sign up normally, then set that user's `role` field to `admin` in the Firestore 
 | `KAAMFIX_DATA_DIR` | Persistent data directory (e.g. `/app/data`) |
 | `ENVIRONMENT` | `development` or `production` |
 
-</details>
 
-<details>
-<summary><b>Frontend — public build configuration</b></summary>
-
-<br/>
+#### Frontend — public build configuration
 
 ```env
 VITE_FIREBASE_API_KEY=
@@ -399,7 +388,6 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 ```
 
-</details>
 
 > **Note:** Variables prefixed `VITE_` are embedded in the browser bundle. Firebase web configuration and the Supabase anon key are public client configuration; access must be controlled through authentication and database/storage rules. Keep Gemini/Groq keys, Supabase service-role keys and Firebase Admin credentials server-side only.
 
@@ -437,11 +425,6 @@ Chunks are 900 characters with 120 overlap; each source gets a SHA-256-derived i
 
 All protected routes expect `Authorization: Bearer <Firebase ID token>`. Full interactive docs at `/docs`.
 
-<details>
-<summary><b>Click to expand the endpoint list</b></summary>
-
-<br/>
-
 | Area | Endpoints |
 |---|---|
 | **System** | `GET /api/health` · `GET /api/agents/status` |
@@ -456,7 +439,6 @@ All protected routes expect `Authorization: Bearer <Firebase ID token>`. Full in
 | **Users & notifications** | `GET/PATCH /api/users/me` · `GET /api/users` · `GET /api/notifications` · `PATCH /api/notifications/{id}/read` |
 | **Legacy advisor** | `POST /api/advisor` |
 
-</details>
 
 ---
 
@@ -582,8 +564,6 @@ Developer of **KaamFix NEXA** — Agentic AI-Powered Home Services, Dispatch & T
 This draft proposes the **MIT License**. Add a corresponding `LICENSE` file to the repository before presenting the project as MIT-licensed. Any existing license and required third-party notices must be preserved.
 
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:F97316,50:1D4ED8,100:0F172A&height=110&section=footer" alt="" width="100%"/>
 
 **Developed by Abdul Subhan · Built for Pakistan's homes and skilled workforce.**
 
