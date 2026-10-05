@@ -207,18 +207,78 @@ Side states: `rejected`, `cancelled`, `disputed`. Illegal transitions return **H
 
 <table>
   <tr>
-    <td align="center" width="50%"><b>🏠 Landing Page</b><br><img src="./screenshots/Landing_Page.jpg" alt="Landing Page" width="100%"></td>
-    <td align="center" width="50%"><b>🔐 Login Modal</b><br><img src="./screenshots/Login_Modal.jpg" alt="Login Modal" width="100%"></td>
+    <td align="center" width="50%">
+      <b>🏠 Landing Page</b><br>
+      <img
+        src="https://github.com/user-attachments/assets/732506fc-abdd-4c36-8031-c0e93fef5083"
+        alt="Landing Page"
+        width="100%"
+      >
+    </td>
+
+    <td align="center" width="50%">
+      <b>🔐 Signup Modal</b><br>
+      <img
+        src="https://github.com/user-attachments/assets/2e3043ee-aac4-4970-aa0e-7c5a83a5301f"
+        alt="Signup Modal"
+        width="100%"
+      >
+    </td>
   </tr>
+
   <tr>
-    <td align="center"><b>👤 Customer Dashboard</b><br><img src="./screenshots/Customer_Dashboard.jpg" alt="Customer Dashboard" width="100%"></td>
-    <td align="center"><b>🧰 Worker Dashboard</b><br><img src="./screenshots/Worker_Dashboard.jpg" alt="Worker Dashboard" width="100%"></td>
+    <td align="center" width="50%">
+      <b>👤 Customer Dashboard</b><br>
+      <img
+        src="https://github.com/user-attachments/assets/9f1248fa-ff87-40d0-bc4f-6cc03d42bbe7"
+        alt="Customer Dashboard"
+        width="100%"
+      >
+    </td>
+
+    <td align="center" width="50%">
+      <b>🧰 Worker Dashboard</b><br>
+      <img
+        src="https://github.com/user-attachments/assets/913689e6-ea10-45b6-9850-ce7dc5562856"
+        alt="Worker Dashboard"
+        width="100%"
+      >
+    </td>
   </tr>
+
   <tr>
-    <td align="center"><b>🛡️ Admin Dashboard</b><br><img src="./screenshots/Admin_Dashboard.jpg" alt="Admin Dashboard" width="100%"></td>
-    <td align="center"><b>🧠 AI Service Advisor</b><br><img src="./screenshots/AI_Service_Advisor.jpg" alt="AI Service Advisor" width="100%"></td>
+    <td align="center" width="50%">
+      <img
+        src="https://github.com/user-attachments/assets/b1663822-9e5c-4648-b0b7-ae7c3d0e5a27"
+        alt="Worker Dashboard Additional Screenshot"
+        width="100%"
+      >
+    </td>
+
+    <td align="center" width="50%">
+      <b>🛡️ Admin Dashboard</b><br>
+      <img
+        src="https://github.com/user-attachments/assets/189554c3-2bbf-471e-b232-341f6c563a2b"
+        alt="Admin Dashboard"
+        width="100%"
+      >
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center" width="50%">
+      <b>🧠 AI Service Advisor</b><br>
+      <img
+        src="https://github.com/user-attachments/assets/425aa25b-94a9-44a6-9bb6-9d1c2376b274"
+        alt="AI Service Advisor"
+        width="100%"
+      >
+    </td>
+
+    <td></td>
   </tr>
 </table>
+
 
 ---
 
